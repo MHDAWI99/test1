@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>لوحة التحكم</title>
+  <style>
+    body{background:#111;color:#fff;font-family:tahoma;padding:20px}
+    input,button{padding:8px;margin:5px}
+    img{display:block;margin-top:5px}
+    .box{border:1px solid #555;padding:10px;margin:10px}
+  </style>
+</head>
+<body>
+
+<script>
+/* حماية بسيطة */
+const PASSWORD = "12";
+if (prompt("ادخل كلمة المرور") !== PASSWORD) {
+  alert("غير مصرح لك");
+  location.href = "index.html";
+}
+</script>
+
+<h2>لوحة إدارة المنتجات</h2>
+
+<form id="form">
+  <input id="name" placeholder="اسم المنتج" required>
+  <input id="price" type="number" placeholder="السعر" required>
+  <input id="category" placeholder="التصنيف">
+  <input type="file" id="image" accept="image/*">
+  <button type="submit">حفظ المنتج</button>
+</form>
+
+<hr>
+<div id="list"></div>
+
+<script>
+/* عناصر الصفحة */
+const form = document.getElementById("form");
+const list = document.getElementById("list");
+const nameInput = document.getElementById("name");
+const priceInput = document.getElementById("price");
+const categoryInput = document.getElementById("category");
+const imageInput = document.getElementById("image");
+
+/* البيانات */
+let products = JSON.parse(localStorage.getItem("products")) || [];
+let editId = null;
+
+/* إضافة / تعديل */
+form.onsubmit = e => {
+  e.preventDefault();
+
+  if (!nameInput.value.trim()) {
+    alert("اكتب اسم المنتج");
+    return;
+  }
+  if (!priceInput.value || isNaN(priceInput.value)) {
+    alert("اكتب سعر صحيح");
+    return;
+  }
+  if (!editId && !imageInput.files[0]) {
+    alert("اختر صورة للمنتج");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    if (editId) {
+      products = products.map(p =>
+        p.id === editId
+          ? {
+              ...p,
+              name: nameInput.value,
+              price: priceInput.value,
+              category: categoryInput.value,
+              image: reader.result || p.image,
+              visible: p.visible ?? true
+            }
+          : p
+      );
+      editId = null;
+    } else {
+      products.push({
+        id: Date.now(),
+        name: nameInput.value,
+        price: priceInput.value,
+        category: categoryInput.value,
+        image: reader.result,
+        visible: true
+      });
+    }
+
+    localStorage.setItem("products", JSON.stringify(products));
+    form.reset();
+    render();
+  };
+
+  if (imageInput.files[0]) reader.readAsDataURL(imageInput.files[0]);
+  else reader.onload();
+};
+
+/* عرض المنتجات (آمن 100%) */
+function render(){
+  list.innerHTML = "";
+
+  products.forEach(p => {
+    list.innerHTML += `
+      <div class="box">
+        <img src="${p.image || ""}" width="100">
+        <b>${p.name || "بدون اسم"}</b><br>
+        ${(p.price !== undefined && p.price !== null) ? p.price : "—"} د.ع<br>
+        <small>${p.category || "غير محدد"}</small><br><br>
+
+        <button onclick="editProduct(${p.id})">تعديل</button>
+        <button onclick="deleteProduct(${p.id})">حذف</button>
+        <button onclick="toggle(${p.id})">
+          ${p.visible ? "إخفاء" : "إظهار"}
+        </button>
+      </div>
+    `;
+  });
+}
+
+/* تعديل */
+function editProduct(id){
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  nameInput.value = p.name || "";
+  priceInput.value = p.price || "";
+  categoryInput.value = p.category || "";
+  editId = id;
+}
+
+/* حذف */
+function deleteProduct(id){
+  if(confirm("حذف المنتج؟")){
+    products = products.filter(p => p.id !== id);
+    localStorage.setItem("products", JSON.stringify(products));
+    render();
+  }
+}
+
+/* إخفاء / إظهار */
+function toggle(id){
+  products = products.map(p =>
+    p.id === id ? {...p, visible: !p.visible} : p
+  );
+  localStorage.setItem("products", JSON.stringify(products));
+  render();
+}
+
+render();
+</script>
+
+</body>
+</html>

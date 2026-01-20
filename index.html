@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مجموعة الأنيا | تجارة الأخشاب والديكور</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="container nav">
+
+    <div class="brand">
+      <img src="img/logo1.png" alt="مجموعة الأنيا" class="logo">
+      <div>
+        <h1>مجموعة الأنيا</h1>
+        <p>تجارة الأخشاب • مواد الديكور • اكسسوارات المطابخ</p>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="works.html">أعمالنا</a></li>
+        <li><a href="shop.html">المتجر</a></li>
+        <li><a href="contact.html">اتصل بنا</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-right">
+      <a class="btn cart-pill" href="shop.html#cart">
+        🛒 السلة <span class="cart-count">0</span>
+      </a>
+      <a class="btn" target="_blank" href="https://www.facebook.com/alanyamdf">فيسبوك</a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== Main ===== -->
+<main class="container">
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-grid">
+
+      <div class="hero-card">
+        <span class="badge">خبرة وجودة وتنوع</span>
+
+        <h2>كل ما تحتاجه للمطابخ والديكور بمواصفات ممتازة</h2>
+
+        <p>
+          نوفر أخشاب MDF ومواد ديكور واكسسوارات مطابخ مع تشكيلة واسعة.
+          اطلب مباشرة من المتجر أو تواصل معنا.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="shop.html">اذهب إلى المتجر</a>
+          <a class="btn" href="works.html">شاهد أعمالنا</a>
+          <a class="btn" href="contact.html">اتصل بنا</a>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi"><b>+100</b><span>منتج</span></div>
+          <div class="kpi"><b>سريع </b><span>طلبات واتساب</span></div>
+          <div class="kpi"><b>جودة </b><span>مواد مختارة</span></div>
+          <div class="kpi"><b>توصيل </b><span>لكافة المحافظات</span></div>
+        </div>
+      </div>
+
+      <!-- Slider -->
+      <div class="slider">
+        <div class="slide active">
+          <img src="img/1.png" alt="مطابخ">
+          <div class="caption">
+            <b>تصاميم مطابخ</b>
+            <div class="badge">تنفيذ وإكسسوارات</div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="img/3.png" alt="ديكور">
+          <div class="caption">
+            <b>ديكورات عصرية</b>
+            <div class="badge">مواد تشطيب</div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="img/2.png" alt="أخشاب">
+          <div class="caption">
+            <b>أخشاب متنوعة</b>
+            <div class="badge">MDF / HDF</div>
+          </div>
+        </div>
+
+        <div class="dots"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sections -->
+  <section class="section">
+    <h3>أقسامنا</h3>
+    <div class="grid">
+      <div class="card"><b>الأخشاب</b><p>ألواح MDF وغيرها.</p></div>
+      <div class="card"><b>مواد الديكور</b><p>حلول تشطيب حديثة.</p></div>
+      <div class="card"><b>اكسسوارات المطابخ</b><p>مفصلات وسلات ومقابض.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>تابعنا على فيسبوك</h3>
+    <div class="card">
+      <iframe
+        src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/alanyamdf&tabs=timeline"
+        width="100%" height="520" style="border:none;overflow:hidden"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    © <span id="year"></span> مجموعة الأنيا — جميع الحقوق محفوظة
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="assets/js/app.js"></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

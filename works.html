@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>أعمالنا | مجموعة الأنيا</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #0f0f0f;
+      color: #eee;
+    }
+
+    nav {
+      background: #000;
+      padding: 10px 20px;
+      border-bottom: 1px solid #222;
+    }
+
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    header {
+      background: linear-gradient(180deg, #111, #000);
+      color: #fff;
+      padding: 25px 15px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section {
+      margin: 40px 0;
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #f2f2f2;
+    }
+
+    /* ===== السلايدر ===== */
+    .slider {
+      position: relative;
+      background: #111;
+      border-radius: 16px;
+      padding: 25px;
+      border: 1px solid #222;
+    }
+
+    .slide {
+      text-align: center;
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    /* ===== الصورة (صغيرة + إطار) ===== */
+    .slide img {
+      width: 230px;
+      max-width: 90%;
+      height: auto;
+
+      border: 2px solid #333;
+      border-radius: 14px;
+      padding: 6px;
+      background: #0b0b0b;
+
+      display: block;
+      margin: 0 auto 15px auto;
+      box-shadow: 0 0 0 1px #000;
+    }
+
+    .caption b {
+      font-size: 18px;
+      display: block;
+      color: #fff;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 6px;
+      background: #1f1f1f;
+      color: #ccc;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      border: 1px solid #333;
+    }
+
+    /* ===== الفيديو ===== */
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid #222;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">الرئيسية</a>
+</nav>
+
+<header>
+  <div class="container">
+    <h1>مجموعة الأنيا</h1>
+    <p>تجارة الأخشاب • مواد الديكور • اكسسوارات المطابخ</p>
+  </div>
+</header>
+
+<main class="container section">
+
+  <h3>معرض أعمالنا</h3>
+
+  <div class="slider">
+
+    <div class="slide active">
+      <img src="img/3.png" alt="مطابخ">
+      <div class="caption">
+        <b>مطابخ</b>
+        <span class="badge">تصميم وتنفيذ</span>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="img/3.png" alt="خلاطات المطابخ">
+      <div class="caption">
+        <b>ديكورات</b>
+        <span class="badge">لمسات عصرية</span>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="img/1.png" alt="أخشاب">
+      <div class="caption">
+        <b>أخشاب</b>
+        <span class="badge">جودة عالية</span>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="section">
+    <h3>فيديو (اختياري)</h3>
+    <div class="card">
+      <video controls preload="metadata"
+        style="width:100%; border-radius:14px; border:1px solid #222; background:#000">
+        <source src="img/6629098636_fb.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو
+      </video>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> مجموعة الأنيا — جميع الحقوق محفوظة
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

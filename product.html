@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تفاصيل المنتج | مجموعة الأنيا</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav>
+  <ul>
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="shop.html">المتجر</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="img/logo1.png" alt="مجموعة الأنيا" class="logo">
+      <div>
+        <h1>مجموعة الأنيا</h1>
+        <p>تجارة الأخشاب • مواد الديكور • اكسسوارات المطابخ</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Main ===== -->
+<main class="container section">
+  <div id="box" class="two-col"></div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    © <span id="year"></span> مجموعة الأنيا — جميع الحقوق محفوظة
+  </div>
+</footer>
+
+<script>
+  // السنة
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // قراءة id من الرابط
+  const params = new URLSearchParams(window.location.search);
+  const id = Number(params.get("id"));
+
+  // قراءة المنتجات من localStorage
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  // إيجاد المنتج
+  const p = products.find(item => item.id === id && item.visible !== false);
+
+  const box = document.getElementById("box");
+
+  if (!p) {
+    box.innerHTML = `<div class="card">المنتج غير موجود.</div>`;
+  } else {
+    box.innerHTML = `\
+      <div class="card">
+        <img 
+          src="${p.image}" 
+          alt="${p.name || "منتج"}"
+          style="border-radius:16px;border:1px solid rgba(255,255,255,.08);width:100%"
+        >
+      </div>
+
+      <div class="card">
+        <div class="badge">${p.category || ""}</div>
+        <h3 style="margin:.5rem 0">${p.name || "بدون اسم"}</h3>
+
+        <div class="price" style="margin:1rem 0">
+          ${p.price || "—"} د.ع
+        </div>
+
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="btn primary" href="contact.html">اطلب الآن</a>
+          <a class="btn" href="shop.html">رجوع للمتجر</a>
+        </div>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
